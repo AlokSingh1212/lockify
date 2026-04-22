@@ -6,10 +6,10 @@ frontend:
         - npm ci
     build:
       commands:
-        - env | grep -e NEXT_PUBLIC_ >> .env.production
-        - env | grep -e DATABASE_URL >> .env.production
-        - env | grep -e CLERK_SECRET_KEY >> .env.production
-        - env | grep -e OPENAI_API_KEY >> .env.production
+        - env | grep -e NEXT_PUBLIC_ >> .env.production || true
+        - env | grep -e DATABASE_URL >> .env.production || true
+        - env | grep -e CLERK_SECRET_KEY >> .env.production || true
+        - env | grep -e OPENAI_API_KEY >> .env.production || true
         - npm run build
   artifacts:
     baseDirectory: .next
