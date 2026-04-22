@@ -3,13 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - npm install
     build:
       commands:
-        - env | grep -e NEXT_PUBLIC_ >> .env.production || true
-        - env | grep -e DATABASE_URL >> .env.production || true
-        - env | grep -e CLERK_SECRET_KEY >> .env.production || true
-        - env | grep -e OPENAI_API_KEY >> .env.production || true
+        - # Safely inject variables without using risky grep exit codes
+        - printenv | while read line; do if [[ $line == NEXT_PUBLIC_* ]] || [[ $line == DATABASE_URL* ]] || [[ $line == CLERK_SECRET_KEY* ]] || [[ $line == OPENAI_API_KEY* ]]; then echo "$line" >> .env.production; fi; done
         - npm run build
   artifacts:
     baseDirectory: .next
