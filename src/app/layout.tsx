@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nas.com Clone - Start selling with a single photo",
+  title: "Lockify - Start selling with a single photo",
   description: "Turn your idea into a business in minutes. AI builds your storefront, runs your campaigns, and finds you customers.",
 };
 
@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <ClerkProvider>
           <header className="absolute top-0 w-full z-50 p-6 flex justify-between items-center max-w-7xl mx-auto left-0 right-0">
-            <div className="font-bold text-xl tracking-tight text-white">Nas.com <span className="text-brand-purple">Clone</span></div>
+            <div className="font-bold text-xl tracking-tight text-white">Lockify</div>
             <div>
               <Show when="signed-out">
                 <SignInButton mode="modal">
