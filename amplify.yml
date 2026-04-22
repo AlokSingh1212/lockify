@@ -6,8 +6,7 @@ frontend:
         - npm install
     build:
       commands:
-        - # Safely inject variables without using risky grep exit codes
-        - printenv | while read line; do if [[ $line == NEXT_PUBLIC_* ]] || [[ $line == DATABASE_URL* ]] || [[ $line == CLERK_SECRET_KEY* ]] || [[ $line == OPENAI_API_KEY* ]]; then echo "$line" >> .env.production; fi; done
+        - 'env | grep -E "NEXT_PUBLIC_|DATABASE_URL|CLERK_SECRET_KEY|OPENAI_API_KEY" >> .env.production || true'
         - npm run build
   artifacts:
     baseDirectory: .next
