@@ -41,7 +41,10 @@ export default function RootLayout({
                 </SignInButton>
               </Show>
               <Show when="signed-in">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-6">
+                  <a href="/discover" className="text-sm font-semibold text-gray-300 hover:text-white transition-colors">
+                    Discover
+                  </a>
                   <a href="/dashboard" className="text-sm font-semibold text-gray-300 hover:text-white transition-colors">
                     Dashboard
                   </a>
