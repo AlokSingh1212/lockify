@@ -22,11 +22,28 @@ interface DiscoverClientProps {
 export function DiscoverClient({ products }: DiscoverClientProps) {
   const [likedIds, setLikedIds] = useState<number[]>([]);
   const [savedIds, setSavedIds] = useState<number[]>([]);
+  const [activeCommentsId, setActiveCommentsId] = useState<number | null>(null);
 
-  const toggleLike = (id: number) => {
+  const toggleLike = async (id: number) => {
+    // Optimistic UI
     setLikedIds(prev => 
       prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
     );
+
+    try {
+      const response = await fetch("/api/likes", {
+        method: "POST",
+        body: JSON.stringify({ productId: id })
+      });
+      if (!response.ok) throw new Error();
+      const data = await response.json();
+      // Sync state if needed
+    } catch (error) {
+      // Revert on error
+      setLikedIds(prev => 
+        prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+      );
+    }
   };
 
   const toggleSave = (id: number) => {
