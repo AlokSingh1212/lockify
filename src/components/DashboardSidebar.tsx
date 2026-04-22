@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Store, Users, BarChart3, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, Store, Sparkles, Users, BarChart3, Settings, LogOut } from "lucide-react";
 import { useClerk } from "@clerk/nextjs";
 
 export function DashboardSidebar() {
@@ -12,6 +12,7 @@ export function DashboardSidebar() {
   const links = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
     { name: "Storefronts", href: "/dashboard/stores", icon: Store },
+    { name: "Magic Ads", href: "/dashboard/ads", icon: Sparkles },
     { name: "Audience", href: "/dashboard/audience", icon: Users },
     { name: "Analytics", href: "/dashboard/analytics", icon: BarChart3 },
     { name: "Settings", href: "/dashboard/settings", icon: Settings },
