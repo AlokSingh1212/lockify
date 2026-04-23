@@ -31,57 +31,47 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ClerkProvider>
-          <header className="absolute top-0 w-full z-50 p-6 flex justify-between items-center max-w-7xl mx-auto left-0 right-0">
-            <div className="font-bold text-xl tracking-tight text-white">Lockify</div>
-            <div>
+          <header className="fixed top-0 w-full z-50 bg-black border-b border-white/10 h-14 flex items-center px-4 justify-between">
+            <div className="flex items-center gap-2">
+              <h1 className="text-2xl font-bold tracking-tight italic" style={{ fontFamily: "serif" }}>Lockify</h1>
+            </div>
+            <div className="flex items-center gap-4">
+              <Show when="signed-in">
+                <button className="hover:opacity-60 transition-opacity">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                </button>
+                <UserButton />
+              </Show>
               <Show when="signed-out">
                 <SignInButton mode="modal">
-                  <button className="text-sm font-semibold text-white hover:text-gray-300 transition-colors">
-                    Log in
-                  </button>
+                  <button className="text-sm font-bold text-blue-500">Log In</button>
                 </SignInButton>
-              </Show>
-              <Show when="signed-in">
-                <div className="flex items-center gap-6">
-                  <a href="/discover" className="text-sm font-semibold text-gray-300 hover:text-white transition-colors">
-                    Discover
-                  </a>
-                  <a href="/dashboard" className="text-sm font-semibold text-gray-300 hover:text-white transition-colors">
-                    Dashboard
-                  </a>
-                  <UserButton />
-                </div>
               </Show>
             </div>
           </header>
-          <main className="relative z-10 pb-20 md:pb-0">
+
+          <main className="relative z-10 pt-14 pb-12 md:pb-0">
             {children}
           </main>
           
-          {/* Mobile Bottom Navigation (Instagram Style) */}
-          <div className="fixed bottom-0 left-0 right-0 h-16 bg-black/90 backdrop-blur-2xl border-t border-white/10 flex md:hidden items-center justify-around z-50 px-6 safe-area-pb">
-            <Link href="/" className="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-all active:scale-90">
-              <div className="w-6 h-6 flex items-center justify-center">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              </div>
+          {/* Instagram-Style Mobile Bottom Navigation */}
+          <div className="fixed bottom-0 left-0 right-0 h-12 bg-black border-t border-white/10 flex md:hidden items-center justify-around z-50 px-2">
+            <Link href="/" className="hover:opacity-60 transition-all active:scale-90">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </Link>
-            <Link href="/discover" className="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-all active:scale-90">
-              <div className="w-6 h-6 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-              </div>
+            <Link href="/discover" className="hover:opacity-60 transition-all active:scale-90">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
             </Link>
-            <Link href="/dashboard" className="flex flex-col items-center justify-center w-12 h-12 bg-brand-purple rounded-2xl shadow-lg shadow-brand-purple/40 -mt-6 border-4 border-black transition-all active:scale-95">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            <Link href="/dashboard" className="hover:opacity-60 transition-all active:scale-90">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="12" x2="12" y1="8" y2="16"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
             </Link>
-            <Link href="/dashboard/ads" className="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-all active:scale-90">
-              <div className="w-6 h-6 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
-              </div>
+            <Link href="/dashboard/ads" className="hover:opacity-60 transition-all active:scale-90">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
             </Link>
-            <Link href="/dashboard" className="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-all active:scale-90">
-              <div className="w-6 h-6 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </div>
+            <Link href="/dashboard" className="hover:opacity-60 transition-all active:scale-90">
+               <div className="w-6 h-6 rounded-full border border-white/20 overflow-hidden">
+                 <div className="w-full h-full bg-gradient-to-tr from-yellow-400 to-purple-600" />
+               </div>
             </Link>
           </div>
         </ClerkProvider>
