@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles, Camera, ArrowRight, Zap, Globe, Shield } from "lucide-react";
+import { Sparkles, Camera, ArrowRight, Zap, Globe, Shield, Heart, MessageCircle, Send } from "lucide-react";
 import Link from "next/link";
 
 export default function LandingPage() {
@@ -85,7 +85,67 @@ export default function LandingPage() {
           </motion.div>
         </div>
 
-        {/* Hero Image Mockup */}
+        {/* Social Feed Preview Section */}
+        <section className="mt-32 px-6 max-w-5xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl md:text-5xl font-bold">The Shop Feed</h2>
+            <p className="text-gray-400">Discover what's trending from our creators.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Mock Post 1 */}
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="glass-card rounded-[2.5rem] overflow-hidden border-white/10"
+            >
+              <div className="p-4 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-brand-purple flex items-center justify-center font-bold text-xs">J</div>
+                <span className="font-bold text-sm">Jordan's Tech</span>
+              </div>
+              <div className="aspect-square bg-gradient-to-br from-brand-purple/20 to-blue-500/20 flex items-center justify-center">
+                <Zap className="w-20 h-20 text-white opacity-40" />
+              </div>
+              <div className="p-6 space-y-3">
+                <div className="flex gap-4">
+                  <Heart className="w-6 h-6 text-red-500 fill-current" />
+                  <MessageCircle className="w-6 h-6" />
+                  <Send className="w-6 h-6" />
+                </div>
+                <p className="text-sm"><b>Jordan's Tech</b> Just launched the new Nebula Mouse! 🚀</p>
+              </div>
+            </motion.div>
+
+            {/* Mock Post 2 */}
+            <motion.div 
+              whileHover={{ y: -5 }}
+              className="glass-card rounded-[2.5rem] overflow-hidden border-white/10"
+            >
+              <div className="p-4 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center font-bold text-xs">A</div>
+                <span className="font-bold text-sm">Aria Design</span>
+              </div>
+              <div className="aspect-square bg-gradient-to-br from-pink-500/20 to-orange-500/20 flex items-center justify-center">
+                <Sparkles className="w-20 h-20 text-white opacity-40" />
+              </div>
+              <div className="p-6 space-y-3">
+                <div className="flex gap-4">
+                  <Heart className="w-6 h-6 text-white" />
+                  <MessageCircle className="w-6 h-6" />
+                  <Send className="w-6 h-6" />
+                </div>
+                <p className="text-sm"><b>Aria Design</b> Handcrafted minimalist posters for your studio. ✨</p>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/discover" className="text-brand-purple font-bold flex items-center justify-center gap-2 hover:underline">
+              View Global Feed <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </section>
+
+        {/* Hero Image Mockup (Previous) */}
         <motion.div
           initial={{ opacity: 0, y: 40, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
